@@ -25,4 +25,7 @@ describe('Add', () => {
     test('should handle cutom multi delimiter [*][;]', () => {
         expect(add("\\[*][;]\n1*2;3")).toBe(6)
     })
+    test('should handle multiple delimiters with length longer than one char [**][;]', () => {
+        expect(add("\\[**][;]\n1**2;3")).toBe(6)
+    })
 })
