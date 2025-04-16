@@ -11,13 +11,18 @@ export const add = (numbersString: string) => {
         let delimiterSubStr = numbersString.substring(2, index);
         console.log({ delimiterSubStr })
         let delimiter = delimiterSubStr.split('][').map((v) => {
-            return v.replace(/[-/\\^$*+?.()|[\]{}]/g,"\\$&")
+            return v.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")
         });
-        console.log(delimiter)
         numbersString = numbersString.substring(index + 1)
         delimiterRegEx = new RegExp(`${delimiter.join('|')}`)
     }
     let numbers = numbersString.split(delimiterRegEx).map(Number);
+    //check for -ve numbers
+    let negativeNumers = numbers.filter((num) => num < 0);
+    if (negativeNumers.length) {
+        throw new Error(`Negative numbers are not allowed: ${negativeNumers.join(',')}`);
+
+    }
     return numbers.reduce((acc, num) => acc + num, 0);
 }
 
