@@ -16,4 +16,7 @@ describe('Add', () => {
     test('should handle delimiter comma alogwith newline', () => {
         expect(add("1,2\n3")).toBe(6)
     })
+    test('should handle cutom delimiter ;', () => {
+        expect(add("\\[;]\n1;2;3")).toBe(6)
+    })
 })

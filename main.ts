@@ -5,6 +5,16 @@ export const add = (numbersString: string) => {
     if (!isStringHasSpecialChar(numbersString)) return parseInt(numbersString);
     //if string is seprated by comma newline like "1,2,3\n4"
     let delimiterRegEx = /[\n,]/;
+    //handle custom delimiter "\\[;]\n1;2;3"
+    if (numbersString.startsWith('\\[')) {
+        let index = numbersString.indexOf(']\n');
+        console.log({ index })
+        let delimiterSubStr = numbersString.substring(2, index);
+        console.log({ delimiterSubStr })
+        let delimiter = delimiterSubStr.split('][').join();
+        numbersString = numbersString.substring(index + 1)
+        delimiterRegEx = new RegExp(`[${delimiter}]`)
+    }
     let numbers = numbersString.split(delimiterRegEx).map(Number);
     return numbers.reduce((acc, num) => acc + num, 0);
 }
