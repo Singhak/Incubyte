@@ -8,4 +8,12 @@ describe('Add', () => {
     test('should return string as number if string consist only number', () => {
         expect(add("123")).toBe(123)
     })
+
+    test('should handle delimiter comma', () => {
+        expect(add("1,2,3")).toBe(6)
+    })
+
+    test('should handle delimiter comma alogwith newline', () => {
+        expect(add("1,2\n3")).toBe(6)
+    })
 })

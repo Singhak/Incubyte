@@ -3,6 +3,10 @@ export const add = (numbersString: string) => {
     if (!numbersString?.trim().length) return 0;
     // if string without any delimiter return string as number
     if (!isStringHasSpecialChar(numbersString)) return parseInt(numbersString);
+    //if string is seprated by comma newline like "1,2,3\n4"
+    let delimiterRegEx = /[\n,]/;
+    let numbers = numbersString.split(delimiterRegEx).map(Number);
+    return numbers.reduce((acc, num) => acc + num, 0);
 }
 
 function isStringHasSpecialChar(str: string) {
