@@ -8,7 +8,6 @@ export const add = (numbersString: string) => {
     //handle custom delimiter "\\[;]\n1;2;3"
     if (numbersString.startsWith('\\[')) {
         let index = numbersString.indexOf(']\n');
-        console.log({ index })
         let delimiterSubStr = numbersString.substring(2, index);
         console.log({ delimiterSubStr })
         let delimiter = delimiterSubStr.split('][').join();
