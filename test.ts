@@ -16,13 +16,16 @@ describe('Add', () => {
     test('should handle delimiter comma alogwith newline', () => {
         expect(add("1,2\n3")).toBe(6)
     })
-    test('should handle cutom delimiter ;', () => {
+    test('should handle custom delimiter ;', () => {
         expect(add("\\[;]\n1;2;3")).toBe(6)
+    })
+    test('should handle custom delimiter ;', () => {
+        expect(add("\\[*]\n2*2*3")).toBe(12)
     })
     test('should handle cutom delimiter of any length ***', () => {
         expect(add("\\[***]\n1***2***3")).toBe(6)
     })
-    test('should handle cutom multi delimiter [*][;]', () => {
+    test('should handle custom multi delimiter [*][;]', () => {
         expect(add("\\[*][;]\n1*2;3")).toBe(6)
     })
     test('should handle multiple delimiters with length longer than one char [**][;]', () => {

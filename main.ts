@@ -1,4 +1,5 @@
 export const add = (numbersString: string) => {
+    let mathOperator = '+';
     // if string is empty return 0
     if (!numbersString?.trim().length) return 0;
     // if string without any delimiter return string as number
@@ -10,6 +11,12 @@ export const add = (numbersString: string) => {
         let index = numbersString.indexOf(']\n');
         let delimiterSubStr = numbersString.substring(2, index);
         console.log({ delimiterSubStr })
+        // handle for * (mul)
+        if (delimiterSubStr.length === 1) {
+            if (delimiterSubStr === '*') {
+                mathOperator = '*';
+            }
+        }
         let delimiter = delimiterSubStr.split('][').map((v) => {
             return v.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&")
         });
@@ -23,7 +30,18 @@ export const add = (numbersString: string) => {
         throw new Error(`Negative numbers are not allowed: ${negativeNumers.join(',')}`);
 
     }
-    return numbers.reduce((acc, num) => acc + num, 0);
+    return mathOperation(mathOperator, numbers)
+}
+
+function mathOperation(operationName: string, numbers: number[]) {
+    switch (operationName) {
+        case '+':
+            return numbers.reduce((acc, num) => acc + num, 0);
+        case '*':
+            return numbers.reduce((acc, num) => acc * num);
+        default:
+            break;
+    }
 }
 
 function isStringHasSpecialChar(str: string) {
