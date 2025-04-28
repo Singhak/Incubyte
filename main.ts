@@ -24,6 +24,15 @@ export const add = (numbersString: string) => {
         delimiterRegEx = new RegExp(`${delimiter.join('|')}`)
     }
     let numbers = numbersString.split(delimiterRegEx).map(Number);
+    // handle multiple of 7
+    let multipleofSeven = numbers.filter((num) => num % 7 == 0)
+    console.log(multipleofSeven)
+    if (multipleofSeven.length) {
+        let invalidsNumbers = multipleofSeven.join(',')
+        Report.push(invalidsNumbers)
+        throw new Error(`Multiple of 7 are not allowed: ${invalidsNumbers}`);
+
+    }
     //check for -ve numbers
     let negativeNumers = numbers.filter((num) => num < 0);
     if (negativeNumers.length) {
@@ -32,6 +41,8 @@ export const add = (numbersString: string) => {
     }
     return mathOperation(mathOperator, numbers)
 }
+
+export const Report: string[] = []
 
 function mathOperation(operationName: string, numbers: number[]) {
     switch (operationName) {

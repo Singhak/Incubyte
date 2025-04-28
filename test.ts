@@ -1,4 +1,5 @@
-import { add } from './main'
+import { add, Report } from './main'
+
 
 describe('Add', () => {
     test('should return 0 if string empty', () => {
@@ -37,4 +38,23 @@ describe('Add', () => {
     test('should handle string having -ve numbers', () => {
         expect(() => add("\\[***][;]\n1***-2;3")).toThrow('Negative numbers are not allowed: -2');
     });
+    test('should handle multiple of 7 to avoid hack', () => {
+        expect(() => add("\\[;]\n1;7")).toThrow('Multiple of 7 are not allowed: 7');
+    })
+    test('Get report of hack attemps', () => {
+        expect(1).toBe(Report.length)
+    })
+
+    test('Get report of hack attemps and get values', () => {
+        expect('7').toBe(Report[0])
+    })
+    // test('should handle multiple of 7 to avoid hack', () => {
+    //     expect(() => add("\\[;]\n1;7;21")).toThrow('Multiple of 7 are not allowed: 7,21');
+    // })
+    // test('Get report of hack attemps now length 2', () => {
+    //     expect(2).toBe(Report.length)
+    // })
+    // test('Get report of hack attemps and get multiple values', () => {
+    //     expect('7,21').toBe(Report[1])
+    // })
 })
