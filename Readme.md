@@ -12,10 +12,16 @@ This project implements a **String Calculator** in TypeScript. The calculator ta
   - Custom multi-character delimiters (e.g., `***`).
   - Multiple custom delimiters (e.g., `[*][;]`).
 - Handles edge cases like invalid input.
+- Handle single `*` sperator as multiply
 
 ## Project Structure
 
-. ├── .gitignore ├── jest.config.js ├── main.ts ├── package.json ├── test.ts ├── tsconfig.json
+ ├── .gitignore\
+ ├── jest.config.js \
+ ├── main.ts \
+ ├── package.json \
+ ├── test.ts \
+ ├── tsconfig.json
 
 
 - **`main.ts`**: Contains the implementation of the `add` function.
@@ -34,20 +40,17 @@ This project implements a **String Calculator** in TypeScript. The calculator ta
 2. Install dependencies
 npm install
 
-Usage
-Run the TypeScript compiler to build the project:
-npm run start
+- Usage:\
+Run the TypeScript compiler to build the project: **`npm run start`**
 
-Testing
-Run the unit tests using Jest:
+- Testing:\
+Run the unit tests using Jest: **`npm test`**
 
-npm test
-
-Example
+- Example\
 Here are some examples of how the add function works:
 
+```javascript
 import { add } from './main';
-
 console.log(add("")); // Output: 0
 console.log(add("123")); // Output: 123
 console.log(add("1,2,3")); // Output: 6
